@@ -1,0 +1,23 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+build/
+pubspec.lock
+
+# IntelliJ related
+.idea/
+*.iml
+
+# VS Code related
+.vscode/
+
+# Android related
+android/app/debug.keystore
+android/.kotlin/
+
+# iOS related
+ios/Flutter/Flutter.podspec
+Pods/
+
+# Firebase Functions related
+functions/node_modules/
