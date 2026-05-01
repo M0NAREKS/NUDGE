@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function ownsUserData(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function pairId(firstId, secondId) {
+      return firstId < secondId
+        ? firstId + '__' + secondId
+        : secondId + '__' + firstId;
+    }
+
+    function isBuddyOf(userId) {
+      return signedIn() &&
+        exists(/databases/$(database)/documents/buddyRequests/$(pairId(userId, request.auth.uid))) &&
+        get(/databases/$(database)/documents/buddyRequests/$(pairId(userId, request.auth.uid))).data.status == 'accepted';
+    }
+
+    match /userDirectory/{userId} {
+      allow read: if signedIn();
+      allow write: if ownsUserData(userId);
+    }
+
+    match /buddyRequests/{requestId} {
+      allow create: if signedIn() &&
+        request.resource.data.fromUid == request.auth.uid;
+      allow read, update, delete: if signedIn() &&
+        (resource.data.fromUid == request.auth.uid ||
+          resource.data.toUid == request.auth.uid);
+    }
+
+    match /users/{userId} {
+      allow read, write: if ownsUserData(userId);
+
+      match /sharedDailyStatus/{dateKey} {
+        allow read: if ownsUserData(userId) || isBuddyOf(userId);
+        allow write: if ownsUserData(userId);
+      }
+
+      match /{document=**} {
+        allow read, write: if ownsUserData(userId);
+      }
+    }
+  }
+}

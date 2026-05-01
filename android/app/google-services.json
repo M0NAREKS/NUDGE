@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "132582268056",
+    "project_id": "fitcoach-13e40",
+    "storage_bucket": "fitcoach-13e40.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132582268056:android:aee7cfce915d635badc4ed",
+        "android_client_info": {
+          "package_name": "com.example.fitcoach"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132582268056-0l8f5bg0689282bhmqa7ovq3qhcoh1be.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuQKCuLs6_O3Gwc4W98qljTwfGH3hcSrg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132582268056-0l8f5bg0689282bhmqa7ovq3qhcoh1be.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "132582268056-35mvp5g2o46pj0s6ee63e2e2896vb07m.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.fitcoach"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
